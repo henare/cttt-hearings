@@ -66,5 +66,21 @@ __END__
     = yield
 
 @@ index
-%div#content
+%div#chart
   %img{ :src => @chart_url, :alt => "Top appearances before the CTTT" }
+%div#about
+  %h1 About
+  %h2 What's this all about, then?
+  %p
+    The chart above shows the top ten entities that have appeared before the
+    %a{ :href => "http://www.cttt.nsw.gov.au/" }Consumer, Trader and Tenancy Tribunal of NSW
+    in the&nbsp;
+    %a{ :href => "http://scraperwiki.com/scrapers/cttt-hearings/" }>data we have available
+    \.
+  %h2 Preview only
+  %p The data we have is reasonably limited so this should only be seen as a preview.
+  %h2 Source code
+  %p
+    The source code for this application is&nbsp;
+    %a{ :href => "" }>available on Github
+    \, please feel free to contribute.
