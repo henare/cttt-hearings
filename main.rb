@@ -26,21 +26,21 @@ helpers do
   def list_parties
     url = "http://api.scraperwiki.com/api/1.0/datastore/getdata?format=json&name=cttt-hearings"
     data = JSON.parse(open(url).read)
-    
+
     all_parties = []
     data.each do |d|
       all_parties << d["party_a"]
       all_parties << d["party_b"]
     end
-    
+
     # make the hash default to 0 so that += will work correctly
     parties = Hash.new(0)
-    
+
     # iterate over the array, counting duplicate entries
     all_parties.each do |v|
       parties[v] += 1
     end
-    
+
     results = []
     parties.each do |k, v|
       results << { :name => k, :appearances => v }
