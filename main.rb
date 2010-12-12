@@ -57,18 +57,10 @@ __END__
   %head
     %title
       CTTT Hearings
+    %link{ :href => 'http://fonts.googleapis.com/css?family=Molengo', :rel => 'stylesheet', :type => 'text/css' }
     :css
       body {
-        background-color: #fff;
-      }
-      #content {
-        width: 500px;
-        margin: auto;
-      }
-      h1 {
-        color: #000;
-        font-size: 250px;
-        text-align: center;
+        font-family: 'Molengo', arial, serif;
       }
   %body
     = yield
