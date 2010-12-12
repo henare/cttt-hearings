@@ -5,6 +5,8 @@ require 'json'
 require 'open-uri'
 require 'cgi'
 
+enable :inline_templates
+
 get '/' do
   labels ="|"
   values = []
