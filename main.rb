@@ -3,9 +3,22 @@ require 'sinatra'
 require 'haml'
 require 'json'
 require 'open-uri'
+require 'cgi'
 
 get '/' do
-  @results = list_parties
+  labels ="|"
+  values = []
+
+  list_parties[0..9].each do |r|
+    labels += CGI.escape( r[:name] + "|" )
+    values << ["#{r[:appearances]*10},"]
+  end
+
+  # Get rid of trailing comma on last value added above and reverse to
+  # match what Google Chart's expecting
+  values = values.reverse.to_s[0..-2]
+
+  @chart_url = "http://chart.apis.google.com/chart?chxl=1:#{labels}&chxr=0,0,10&chxt=x,y&chbh=a&chs=500x400&cht=bhs&chco=008000&chd=t:#{values}&chtt=Top+appearances+before+the+CTTT"
   haml :index
 end
 
@@ -62,6 +75,4 @@ __END__
 
 @@ index
 %div#content
-  %ul
-  - @results.each do |r|
-    %li  #{r[:appearances]}  #{r[:name]}
+  %img{ :src => @chart_url, :alt => "Top appearances before the CTTT" }
